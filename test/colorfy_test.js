@@ -38,6 +38,7 @@
 			this.c = new Colorfy( "test/files/bear.svg" );
 			this.c2 = new Colorfy( "test/files/bear.colors-blue-red.svg" );
 			this.c3 = new Colorfy( "test/files/bear.svg", {"orange": "orange", "green": "green" } );
+			this.c4 = new Colorfy( "test/files/bear.colors-primary.svg", {"primary": "orange", "green": "green" } );
 			done();
 		},
 
@@ -87,7 +88,11 @@
 			test.done();
 		},
 		colorsAsArg: function( test ){
-			test.ok( arrayEqual( this.c3.colornames, ['orange', 'green'] ) );
+			test.ok( arrayEqual( this.c3.colornames, [] ) );
+			test.done();
+		},
+		colorsAsArgWithFilename: function( test ){
+			test.ok( arrayEqual( this.c4.colornames, ['primary'] ) );
 			test.done();
 		}
 	};
@@ -120,15 +125,15 @@
 		},
 		colorFilesOpts: function( test ){
 			this.c3.convert();
-			test.equals( Object.keys( this.c3.colorFiles ).length, 2 );
-			test.ok( arrayEqual( Object.keys( this.c3.colorFiles ), ['bear-orange.svg', 'bear-green.svg'] ));
+			test.equals( Object.keys( this.c3.colorFiles ).length, 0 );
+			test.ok( arrayEqual( Object.keys( this.c3.colorFiles ), [] ));
 			test.done();
 		},
 		colorFilesOptsDefinition: function( test ){
 			this.c4.convert();
-			test.equals( Object.keys( this.c4.colorFiles ).length, 3 );
-			test.ok( arrayEqual( Object.keys( this.c4.colorFiles ), ['bear-blue.svg', 'bear-red.svg', 'bear-primary.svg'] ));
-			test.equals( this.c4.colorFiles['bear-primary.svg'], bearPrimaryFFA500 );
+			test.equals( Object.keys( this.c4.colorFiles ).length, 3, "Has Correct amount of colors" );
+			test.ok( arrayEqual( Object.keys( this.c4.colorFiles ), ['bear-primary.svg','bear-blue.svg', 'bear-red.svg'] ), "Has correct file names");
+			test.equals( this.c4.colorFiles['bear-primary.svg'], bearPrimaryFFA500, "has correct contents" );
 			test.done();
 		},
 		colorFilesOptsDefinitionNoMatch: function( test ){
