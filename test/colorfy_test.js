@@ -104,6 +104,7 @@
 			this.c3 = new Colorfy( "test/files/bear.svg", { "orange": "#ffa500", "green": "#00ff00"} );
 			this.c4 = new Colorfy( "test/files/bear.colors-primary-blue-red.svg", { "primary": "#ffa500" } );
 			this.c5 = new Colorfy( "test/files/bear.colors-secondary.svg", { "primary": "#ffa500" } );
+			this.c6 = new Colorfy( "test/files/bear.svg", { "primary": "#ffa500", "secondary": "red" } , true);
 			done();
 		},
 		colorFilesNoColor: function( test ){
@@ -139,6 +140,14 @@
 		colorFilesOptsDefinitionNoMatch: function( test ){
 			this.c5.convert();
 			test.equals( this.c5.colorFiles['bear-secondary.svg'], undefined );
+			test.done();
+		},
+		colorUsingExtraColors: function (test) {
+			this.c6.convert();
+			test.equals( Object.keys( this.c6.colorFiles ).length, 2, "Has Correct amount of colors" );
+			test.ok( arrayEqual( Object.keys( this.c6.colorFiles ), ['bear-primary.svg','bear-secondary.svg'] ), "Has correct file names");
+			test.equals( this.c6.colorFiles['bear-primary.svg'], bearPrimaryFFA500, "has correct contents" );
+			test.equals( this.c6.colorFiles['bear-secondary.svg'], bearRedSVG, "has correct contents" );
 			test.done();
 		}
 	};
