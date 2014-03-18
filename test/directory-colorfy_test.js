@@ -29,6 +29,13 @@
 																				},
 																				useExtraColors:true
 																			});
+			this.dc6 = new DirectoryColorfy( "test/files", "test/files/temp4",
+																			{ colors: {
+																					":hover": "blue",
+																					":active": "yellow"
+																				},
+																				useExtraColors:true
+																			});
 			done();
 		},
 		tearDown: function( done ){
@@ -49,6 +56,7 @@
 			test.equal( Object.keys( this.dc4.options.colors ).length, 1, "Colors filled" );
 			test.equal( this.dc5.files.length , 5, "Amount of files correct" );
 			test.equal( Object.keys( this.dc5.options.colors ).length, 2, "Colors filled" );
+			test.equal( Object.keys( this.dc6.options.colors ).length, 2, "Colors filled" );
 			test.done();
 		}
 	};

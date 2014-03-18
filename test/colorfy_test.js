@@ -40,6 +40,7 @@
 			this.c3 = new Colorfy( "test/files/bear.svg", {"orange": "orange", "green": "green" } );
 			this.c4 = new Colorfy( "test/files/bear.colors-primary.svg", {"primary": "orange", "green": "green" } );
 			this.c5 = new Colorfy( "test/files/bear.svg", {"focus": "orange", "hover": "green" } ,true);
+			this.c6 = new Colorfy( "test/files/bear.svg", {":focus": "orange", ":hover": "green" } ,true);
 			done();
 		},
 
@@ -95,6 +96,7 @@
 		colorsAsArgWithFilename: function( test ){
 			test.ok( arrayEqual( this.c4.colornames, ['primary'] ) );
 			test.ok( arrayEqual( this.c5.colornames, ['focus','hover'] ) );
+			test.ok( arrayEqual( this.c6.colornames, ['focus','hover'] ) );
 			test.done();
 		}
 	};
@@ -107,6 +109,7 @@
 			this.c4 = new Colorfy( "test/files/bear.colors-primary-blue-red.svg", { "primary": "#ffa500" } );
 			this.c5 = new Colorfy( "test/files/bear.colors-secondary.svg", { "primary": "#ffa500" } );
 			this.c6 = new Colorfy( "test/files/bear.svg", { "primary": "#ffa500", "secondary": "red" } , true);
+			this.c7 = new Colorfy( "test/files/bear.svg", { ":active": "#ffa500", ":before": "red" } , true);
 			done();
 		},
 		colorFilesNoColor: function( test ){
@@ -150,6 +153,14 @@
 			test.ok( arrayEqual( Object.keys( this.c6.colorFiles ), ['bear-primary.svg','bear-secondary.svg'] ), "Has correct file names");
 			test.equals( this.c6.colorFiles['bear-primary.svg'], bearPrimaryFFA500, "has correct contents" );
 			test.equals( this.c6.colorFiles['bear-secondary.svg'], bearRedSVG, "has correct contents" );
+			test.done();
+		},
+		colorUsingPseudoclasses: function (test) {
+			this.c7.convert();
+			test.equals( Object.keys( this.c7.colorFiles ).length, 2, "Has Correct amount of colors" );
+			test.ok( arrayEqual( Object.keys( this.c7.colorFiles ), ['bear-active.svg','bear-before.svg'] ), "Has correct file names");
+			test.equals( this.c7.colorFiles['bear-active.svg'], bearPrimaryFFA500, "has correct contents" );
+			test.equals( this.c7.colorFiles['bear-before.svg'], bearRedSVG, "has correct contents" );
 			test.done();
 		}
 	};
