@@ -22,6 +22,13 @@
 																					"secondary": "yellow"
 																				}
 																			});
+			this.dc5 = new DirectoryColorfy( "test/files", "test/files/temp3",
+																			{ colors: {
+																					"primary": "blue",
+																					"secondary": "yellow"
+																				},
+																				useExtraColors:true
+																			});
 			done();
 		},
 		tearDown: function( done ){
@@ -40,6 +47,8 @@
 			test.equal( this.dc3.files.length , 1, "Amount of files correct" );
 			test.equal( this.dc4.files.length , 5, "Amount of files correct" );
 			test.equal( Object.keys( this.dc4.options.colors ).length, 1, "Colors filled" );
+			test.equal( this.dc5.files.length , 5, "Amount of files correct" );
+			test.equal( Object.keys( this.dc5.options.colors ).length, 2, "Colors filled" );
 			test.done();
 		}
 	};
@@ -94,6 +103,36 @@
 			test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
 			test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
 			test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
+			test.done();
+		}
+	};
+	exports.convertDirUseExtraColors = {
+		setUp: function( done ) {
+			this.dc = new DirectoryColorfy( "test/files/directory-colorfy" , path.resolve( path.join( "test", "files", "temp" )),
+																		{ colors: {
+																				"hover": "green",
+																				"focus": "orange"
+																			},
+																			useExtraColors:true
+																		});
+			done();
+		},
+		tearDown: function( done ){
+			["bear-hover", "bear-focus", "cat-hover", "cat-focus"].forEach( function( base ){
+				if( fs.existsSync( "test/files/temp/" + base + ".svg" ) ){
+					fs.unlinkSync( "test/files/temp/" + base + ".svg" );
+				}
+			});
+			done();
+		},
+		convert: function( test ){
+			this.dc.convert();
+			test.ok( fs.existsSync( "test/files/temp/bear.svg" ) , "Bear is there" );
+			test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
+			test.ok( fs.existsSync( "test/files/temp/cat-hover.svg" ) , "Green cat is there" );
+			test.ok( fs.existsSync( "test/files/temp/bear-hover.svg" ) , "Green bear is there" );
+			test.ok( fs.existsSync( "test/files/temp/cat-focus.svg" ) , "Orange cat is there" );
+			test.ok( fs.existsSync( "test/files/temp/bear-focus.svg" ) , "Orange bear is there" );
 			test.done();
 		}
 	};

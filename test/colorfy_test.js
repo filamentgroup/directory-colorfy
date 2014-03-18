@@ -39,6 +39,7 @@
 			this.c2 = new Colorfy( "test/files/bear.colors-blue-red.svg" );
 			this.c3 = new Colorfy( "test/files/bear.svg", {"orange": "orange", "green": "green" } );
 			this.c4 = new Colorfy( "test/files/bear.colors-primary.svg", {"primary": "orange", "green": "green" } );
+			this.c5 = new Colorfy( "test/files/bear.svg", {"focus": "orange", "hover": "green" } ,true);
 			done();
 		},
 
@@ -93,6 +94,7 @@
 		},
 		colorsAsArgWithFilename: function( test ){
 			test.ok( arrayEqual( this.c4.colornames, ['primary'] ) );
+			test.ok( arrayEqual( this.c5.colornames, ['focus','hover'] ) );
 			test.done();
 		}
 	};
