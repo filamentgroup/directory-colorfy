@@ -173,6 +173,51 @@
 		}
 	};
 
+	exports._getColorConfig = {
+		setUp: function( done ){
+			this.c = new Colorfy( "test/files/bear.svg" );
+			this.c2 = new Colorfy( "test/files/bear.colors-blue-red.svg" );
+			done();
+		},
+		filenameHasNoColors: function( test ){
+			var colorConfig = this.c._getColorConfig( "test/files/bear.svg" );
+			test.deepEqual( Object.keys(colorConfig).length, 0, "_getColorConfig should return an empty object" );
+			test.done();
+		},
+		filenameHasColorsNoExtras: function( test ){
+			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red.svg" );
+			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
+			test.deepEqual( colorConfig.blue, 'blue', "_getColorConfig should return color word for color word" );
+			test.deepEqual( colorConfig.red, 'red', "_getColorConfig should return color word for color word" );
+			test.done();
+		},
+		filenameHasColorsWordWithoutMatch: function( test ){
+			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red-asdf.svg" );
+			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
+			test.deepEqual( colorConfig.blue, 'blue', "_getColorConfig should return color word for color word" );
+			test.deepEqual( colorConfig.red, 'red', "_getColorConfig should return color word for color word" );
+			test.done();
+		},
+		filenameHasColorsWordWithMatch: function( test ){
+			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red-asdf.svg", { "asdf": "orange"} );
+			test.deepEqual( Object.keys(colorConfig).length, 3, "_getColorConfig should return two colors" );
+			test.deepEqual( colorConfig.blue, 'blue', "_getColorConfig should return color word for color word" );
+			test.deepEqual( colorConfig.red, 'red', "_getColorConfig should return color word for color word" );
+			test.deepEqual( colorConfig.asdf, 'orange', "_getColorConfig should return color word for color word" );
+			test.done();
+		},
+		filenameHasColorsWordWithOverride: function( test ){
+			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red.svg", { "red": "#e50000"} );
+			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
+			test.deepEqual( colorConfig.blue, 'blue', "_getColorConfig should return color word for color word" );
+			test.deepEqual( colorConfig.red, '#e50000', "_getColorConfig should return color word for color word" );
+			test.done();
+		},
+		tearDown: function( done ){
+			done();
+		}
+	};
+
 
 }(typeof exports === 'object' && exports || this));
 
