@@ -41,6 +41,34 @@ Example:
 { "primary": "#ff0000" }
 ```
 
+#### options.dynamicColorOnly
+Type: `Boolean`
+Default value: `false`
+
+Allows you to tell directory-colorfy to ignore the original file when using colors.
+
+Example: 
+
+If given a file like:
+
+```
+bear.colors-white.svg
+```
+
+And `dynamicColorOnly` is set to `true`:
+
+```
+{
+	dynamicColorOnly: true
+}
+```
+
+Only a single file will be generated:
+
+```
+bear-white.svg
+```
+
 ## Examples
 
 If the input directory has this file in it:
