@@ -48,6 +48,7 @@ Default value: `false`
 Allows you to tell directory-colorfy to ignore the original file when using colors.
 
 #####Example
+=======
 
 If given a file like:
 
