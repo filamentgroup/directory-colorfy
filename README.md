@@ -47,10 +47,7 @@ Default value: `false`
 
 Allows you to tell directory-colorfy to ignore the original file when using colors.
 
-#####Example
-=======
-
-If given a file like:
+For example, if given a file named like so: 
 
 ```
 bear.colors-white.svg
