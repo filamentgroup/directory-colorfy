@@ -104,7 +104,7 @@
 			this.c3 = new Colorfy( "test/files/bear.svg", { "orange": "#ffa500", "green": "#00ff00"} );
 			this.c4 = new Colorfy( "test/files/bear.colors-primary-blue-red.svg", { "primary": "#ffa500" } );
 			this.c5 = new Colorfy( "test/files/bear.colors-secondary.svg", { "primary": "#ffa500" } );
-			this.c6 = new Colorfy( "test/files/bear.colors-blue.svg", { "primary": "#ffa500" }, true );
+			this.c6 = new Colorfy( "test/files/bear.colors-blue.svg", { "primary": "#ffa500" }, { dynamicColorOnly: true } );
 			done();
 		},
 		colorFilesNoColor: function( test ){
@@ -146,7 +146,8 @@
 			this.c6.convert();
 			test.equals( Object.keys( this.c6.colorFiles ).length, 1, "Has Correct amount of colors" );
 			test.ok( arrayEqual( Object.keys( this.c6.colorFiles ), ['bear-blue.svg'] ), "Has correct file names");
-			test.equals( this.c6.colorFiles['bear-blue.svg'], bearBlueSVG, "has correct contents" );			test.done();
+			test.equals( this.c6.colorFiles['bear-blue.svg'], bearBlueSVG, "has correct contents" );
+			test.done();
 		}
 	};
 
@@ -174,6 +175,28 @@
 			this.c2.convert();
 			this.c2.writeFiles( "test/files/temp" );
 			test.ok( fs.existsSync( "test/files/temp/bear.svg" ) );
+			test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
+			test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
+			test.done();
+		}
+	};
+	exports.writeFileDyanmicOnly = {
+		setUp: function( done ) {
+			this.c = new Colorfy( "test/files/bear.colors-blue-red.svg", {}, { dynamicColorOnly: true } );
+			done();
+		},
+		tearDown: function( done ){
+			["bear-blue", "bear-red"].forEach( function( base ){
+				if( fs.existsSync( "test/files/temp/" + base + ".svg" ) ){
+					fs.unlinkSync( "test/files/temp/" + base + ".svg" );
+				}
+			});
+			done();
+		},
+		writeColorFiles: function( test ) {
+			this.c.convert();
+			this.c.writeFiles( "test/files/temp" );
+			test.ok( !fs.existsSync( "test/files/temp/bear.svg" ) );
 			test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
 			test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
 			test.done();
