@@ -32,13 +32,13 @@
 			test.done();
 		},
 		constructor: function( test ){
-			test.equal( this.dc.files.length , 6, "Amount of files correct" );
+			test.equal( this.dc.files.length , 7, "Amount of files correct" );
 			test.equal( this.dc2.input, "test/files", "Input filled in on constuctor" );
 			test.equal( this.dc2.output, "test/files/temp", "Output filled in on constuctor" );
 			test.equal( Object.keys( this.dc2.options.colors ).length, 1, "Colors filled" );
 			test.equal( Object.keys(this.dc2.options.colors)[0], "blue", "Colors filled" );
 			test.equal( this.dc3.files.length , 1, "Amount of files correct" );
-			test.equal( this.dc4.files.length , 6, "Amount of files correct" );
+			test.equal( this.dc4.files.length , 7, "Amount of files correct" );
 			test.equal( Object.keys( this.dc4.options.colors ).length, 1, "Colors filled" );
 			test.done();
 		}
