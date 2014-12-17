@@ -62,11 +62,18 @@
 			done();
 		},
 		convert: function( test ){
-			this.dc.convert();
-			test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
-			test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
-			test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
-			test.done();
+			test.expect(3);
+			this.dc.convert()
+			.then(function(){
+				test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
+				test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
+				test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
+				test.done();
+			})
+			.catch(function(err){
+				console.log(err);
+				test.done();
+			});
 		}
 	};
 
@@ -89,12 +96,19 @@
 			done();
 		},
 		convert: function( test ){
-			this.dc.convert();
-			test.ok( fs.existsSync( "test/files/temp/bear.svg" ) , "Bear is there" );
-			test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
-			test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
-			test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
-			test.done();
+			test.expect(4);
+			this.dc.convert()
+			.then(function(){
+				test.ok( fs.existsSync( "test/files/temp/bear.svg" ) , "Bear is there" );
+				test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
+				test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
+				test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
+				test.done();
+			})
+			.catch(function(err){
+				console.log(err);
+				test.done();
+			});
 		}
 	};
 
