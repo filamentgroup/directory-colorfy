@@ -10,7 +10,10 @@ Install the module with: `npm install directory-colorfy`
 ```javascript
 var DirectoryColorfy = require('directory-colorfy');
 var dc = new DirectoryColorfy( input, output, options );
-dc.convert();
+dc.convert()
+.then(function(){
+// Next
+});
 ```
 
 ## Documentation
@@ -96,6 +99,7 @@ Which will all be completely filled in with their specific color.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 1.0.0 Make `convert` return a promise. Also, change from putting stylesheet in to just changing the `fill` and `stroke` attributes
 * 0.4.0 Make sure custom color words override actual color words (e.g.
 	red)
 * 0.3.0 Make sure custom color words (e.g. primary, secondary) are
