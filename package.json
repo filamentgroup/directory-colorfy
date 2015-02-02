@@ -31,8 +31,8 @@
 	"dependencies": {
 		"fs-extra": "0.6.3",
 		"lodash": "2.4.0",
-		"jsdom": "1.5.0",
-		"rsvp": "3.0.15"
+		"rsvp": "3.0.15",
+		"phantomjs": "1.9.15"
 	},
 	"devDependencies": {
 		"grunt-contrib-jshint": "~0.1.1",
