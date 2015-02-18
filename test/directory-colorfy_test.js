@@ -85,6 +85,12 @@
 																				"secondary": "orange"
 																			}
 																		});
+			this.dcHuge = new DirectoryColorfy( "test/files/directory-colorfy/large" , path.resolve( path.join( "test", "files", "temp" )),
+																		{ colors: {
+																				"primary": "green",
+																				"secondary": "orange"
+																			}
+																		});
 			done();
 		},
 		tearDown: function( done ){
@@ -103,6 +109,17 @@
 				test.ok( fs.existsSync( "test/files/temp/cat.svg" ) , "Cat is there" );
 				test.ok( fs.existsSync( "test/files/temp/cat-primary.svg" ) , "Green cat is there" );
 				test.ok( fs.existsSync( "test/files/temp/cat-secondary.svg" ) , "Orange cat is there" );
+				test.done();
+			})
+			.catch(function(err){
+				console.log(err);
+				test.done();
+			});
+		},
+		convertHugeDirectory: function( test ){
+			this.dcHuge.convert()
+			.then(function(){
+				test.ok( true , "Test completed" );
 				test.done();
 			})
 			.catch(function(err){
@@ -147,7 +164,6 @@
 			});
 		}
 	};
-
 
 }(typeof exports === 'object' && exports || this));
 
