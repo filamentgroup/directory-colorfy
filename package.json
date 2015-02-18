@@ -1,44 +1,45 @@
 {
-	"name": "directory-colorfy",
-	"description": "Color up those SVGs",
-	"version": "2.0.1",
-	"homepage": "https://github.com/filamentgroup/directory-colorfy",
-	"author": {
-		"name": "Jeffrey Lembeck & Filament Group",
-		"email": "thegroup@filamentgroup.com",
-		"url": "http://filamentgroup.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/filamentgroup/directory-colorfy"
-	},
-	"bugs": {
-		"url": "https://github.com/filamentgroup/directory-colorfy/issues"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "https://github.com/filamentgroup/directory-colorfy/blob/master/LICENSE-MIT"
-		}
-	],
-	"main": "lib/directory-colorfy",
-	"engines": {
-		"node": ">= 0.8.0"
-	},
-	"scripts": {
-		"test": "grunt nodeunit"
-	},
-	"dependencies": {
-		"fs-extra": "0.6.3",
-		"lodash": "2.4.0",
-		"rsvp": "3.0.15",
-		"phantomjs": "1.9.15"
-	},
-	"devDependencies": {
-		"grunt-contrib-jshint": "~0.1.1",
-		"grunt-contrib-nodeunit": "~0.1.2",
-		"grunt-contrib-watch": "~0.2.0",
-		"grunt": "~0.4.2"
-	},
-	"keywords": []
+  "name": "directory-colorfy",
+  "description": "Color up those SVGs",
+  "version": "2.0.1",
+  "homepage": "https://github.com/filamentgroup/directory-colorfy",
+  "author": {
+    "name": "Jeffrey Lembeck & Filament Group",
+    "email": "thegroup@filamentgroup.com",
+    "url": "http://filamentgroup.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filamentgroup/directory-colorfy"
+  },
+  "bugs": {
+    "url": "https://github.com/filamentgroup/directory-colorfy/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/filamentgroup/directory-colorfy/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/directory-colorfy",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "dependencies": {
+    "fs-extra": "0.6.3",
+    "lodash": "2.4.0",
+    "phantomjs": "1.9.15",
+    "rsvp": "3.0.15",
+    "worker-farm": "^1.2.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.1.1",
+    "grunt-contrib-nodeunit": "~0.1.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt": "~0.4.2"
+  },
+  "keywords": []
 }
