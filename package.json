@@ -26,7 +26,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "node node_modules/.bin/grunt nodeunit"
   },
   "dependencies": {
     "fs-extra": "0.6.3",
@@ -39,7 +39,8 @@
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-cli": "^0.1.13"
   },
   "keywords": []
 }
