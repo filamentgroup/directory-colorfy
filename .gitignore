@@ -2,3 +2,4 @@
 .vimdir
 npm-debug.log
 .vagrant
+test/files/temp
