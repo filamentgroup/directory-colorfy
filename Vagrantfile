@@ -8,6 +8,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "trusty64"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+  end
+
   config.vm.network "private_network", ip: "33.33.33.10"
   config.vm.network "forwarded_port", guest: 80, host: 4567
 
@@ -18,8 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     echo "Installing node and deps ..."
     if ! which node; then
       apt-get update
-      apt-get install -y build-essential fontconfig
-      apt-get install -y python-software-properties
+      apt-get install -y build-essential fontconfig python-software-properties git
       add-apt-repository ppa:chris-lea/node.js
       apt-get update
       apt-get install -y nodejs
