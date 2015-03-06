@@ -36,11 +36,11 @@
     "worker-farm": "git://github.com/filamentgroup/node-worker-farm.git#master"
   },
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.2",
-    "grunt-cli": "^0.1.13"
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1"
   },
   "keywords": []
 }
