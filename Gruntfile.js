@@ -45,6 +45,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit:main']);
-	grunt.registerTaks('scale', ['jshint', 'nodeunit']);
+	grunt.registerTask('scale', ['jshint', 'nodeunit']);
 
 };

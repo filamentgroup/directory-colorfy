@@ -1,7 +1,7 @@
 {
 	"name": "directory-colorfy",
 	"description": "Color up those SVGs",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"homepage": "https://github.com/filamentgroup/directory-colorfy",
 	"author": {
 		"name": "Jeffrey Lembeck & Filament Group",
