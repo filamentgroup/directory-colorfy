@@ -5,7 +5,8 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     nodeunit: {
-      files: ['test/**/*_test.js'],
+			main: ['test/*_test.js'],
+			large: ['test/large/directory-colorfy-large_test.js']
     },
     jshint: {
       options: {
@@ -43,6 +44,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint', 'nodeunit:main']);
+	grunt.registerTaks('scale', ['jshint', 'nodeunit']);
 
 };
