@@ -5,7 +5,7 @@
 
 	var path = require( 'path' );
 	var fs = require( 'fs' );
-	var DirectoryColorfy = require( path.join( '..', 'lib', 'directory-colorfy' ) );
+	var DirectoryColorfy = require( path.join( '..', '..', 'lib', 'directory-colorfy' ) );
 
 	exports.convertDir = {
 		setUp: function( done ) {
