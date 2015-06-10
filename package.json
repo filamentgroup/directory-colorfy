@@ -33,7 +33,7 @@
 		"lodash": "2.4.0",
 		"phantomjs": "1.9.15",
 		"rsvp": "3.0.15",
-		"worker-farm": "git://github.com/filamentgroup/node-worker-farm.git#master"
+		"@filamentgroup/worker-farm": "1.2.0"
 	},
 	"devDependencies": {
 		"grunt": "^0.4.5",
