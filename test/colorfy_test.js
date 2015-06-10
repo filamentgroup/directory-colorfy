@@ -111,115 +111,144 @@
 		},
 		colorFilesNoColor: function( test ){
 			test.expect(1);
-			this.c.convert(function(err, c){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.equals( Object.keys( c.colorFiles ).length, 0 );
-					test.done();
+
+			this.c.convert({
+				complete: test.done,
+
+				collect: function(err, c){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.equals( Object.keys( c.colorFiles ).length, 0 );
+					}
 				}
 			});
 		},
 		colorFiles: function( test ){
-			this.c2.convert(function(err, c){
-				if( err ){
-					test.expect(1);
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.expect(2);
-					test.equals( Object.keys( c.colorFiles ).length, 2, "There should be two files - those files should be bear-blue.svg and bear-red.svg");
-					test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-red.svg'] ) || arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-blue.svg'] ),
-									"The colorfiles array doesn't match, it is: " + Object.keys(c.colorFiles).join( " " ));
-					test.done();
+			this.c2.convert({
+				complete: test.done,
+
+				collect: function(err, c){
+					if( err ){
+						test.expect(1);
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.expect(2);
+						test.equals( Object.keys( c.colorFiles ).length, 2, "There should be two files - those files should be bear-blue.svg and bear-red.svg");
+						test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-red.svg'] ) || arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-blue.svg'] ),
+										 "The colorfiles array doesn't match, it is: " + Object.keys(c.colorFiles).join( " " ));
+					}
 				}
 			});
 		},
 		colorFilesContents: function( test ){
 			test.expect(2);
-			this.c2.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.equals( c.colorFiles['bear-blue.svg'], bearBlueSVG );
-					test.equals( c.colorFiles['bear-red.svg'], bearRedSVG );
-					test.done();
+
+			this.c2.convert({
+				complete: test.done,
+
+				collect: function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.equals( c.colorFiles['bear-blue.svg'], bearBlueSVG );
+						test.equals( c.colorFiles['bear-red.svg'], bearRedSVG );
+					}
 				}
 			});
 		},
+
 		colorFilesOpts: function( test ){
 			test.expect(2);
-			this.c3.convert(function( err, c ){
+
+			this.c3.convert({
+				complete: test.done,
+				collect: function( err, c ){
 				if( err ){
 					test.ok( false, err );
 					test.done();
 				} else {
 					test.equals( Object.keys( c.colorFiles ).length, 0 );
 					test.ok( arrayEqual( Object.keys( c.colorFiles ), [] ));
-					test.done();
+				}
 				}
 			});
 		},
+
 		colorFilesOptsDefinition: function( test ){
-			this.c4.convert(function(err, c){
-				if( err ){
-					test.expect(1);
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.expect(3);
-					test.equals( Object.keys( c.colorFiles ).length, 3, "Has Correct amount of colors" );
-					test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-primary.svg','bear-blue.svg', 'bear-red.svg'] ) ||
-									arrayEqual( Object.keys( c.colorFiles ), ['bear-primary.svg', 'bear-red.svg', 'bear-blue.svg' ] ) ||
-									arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-red.svg', 'bear-primary.svg'] ) ||
-									arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-primary.svg', 'bear-red.svg' ] ) ||
-									arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-primary.svg', 'bear-blue.svg' ] ) ||
-									arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-blue.svg', 'bear-primary.svg' ] ),
-										"Has correct file names, they are: " + Object.keys( c.colorFiles ).join( " " ));
-					test.equals( c.colorFiles['bear-primary.svg'], bearPrimaryFFA500, "has correct contents" );
-					test.done();
+			this.c4.convert({
+				complete: test.done,
+
+				collect: function(err, c){
+					if( err ){
+						test.expect(1);
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.expect(3);
+						test.equals( Object.keys( c.colorFiles ).length, 3, "Has Correct amount of colors" );
+						test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-primary.svg','bear-blue.svg', 'bear-red.svg'] ) ||
+										 arrayEqual( Object.keys( c.colorFiles ), ['bear-primary.svg', 'bear-red.svg', 'bear-blue.svg' ] ) ||
+										 arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-red.svg', 'bear-primary.svg'] ) ||
+										 arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg', 'bear-primary.svg', 'bear-red.svg' ] ) ||
+										 arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-primary.svg', 'bear-blue.svg' ] ) ||
+										 arrayEqual( Object.keys( c.colorFiles ), ['bear-red.svg', 'bear-blue.svg', 'bear-primary.svg' ] ),
+										 "Has correct file names, they are: " + Object.keys( c.colorFiles ).join( " " ));
+						test.equals( c.colorFiles['bear-primary.svg'], bearPrimaryFFA500, "has correct contents" );
+					}
 				}
 			});
 		},
+
 		colorFilesOptsDefinitionNoMatch: function( test ){
 			test.expect(1);
-			this.c5.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.equals( c.colorFiles['bear-secondary.svg'], undefined );
-					test.done();
+			this.c5.convert({
+				complete: test.done,
+
+				collect: function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.equals( c.colorFiles['bear-secondary.svg'], undefined );
+					}
 				}
 			});
 		},
+
 		colorFilesOptsAutoColor: function( test ){
 			test.expect(3);
-			this.c6.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.equals( Object.keys( c.colorFiles ).length, 1, "Has Correct amount of colors" );
-					test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg'] ), "Has correct file names");
-					test.equals( c.colorFiles['bear-blue.svg'], bearBlueSVG, "has correct contents" );
-					test.done();
+			this.c6.convert({
+				complete: test.done,
+				collect: function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.equals( Object.keys( c.colorFiles ).length, 1, "Has Correct amount of colors" );
+						test.ok( arrayEqual( Object.keys( c.colorFiles ), ['bear-blue.svg'] ), "Has correct file names");
+						test.equals( c.colorFiles['bear-blue.svg'], bearBlueSVG, "has correct contents" );
+					}
 				}
 			});
 		},
+
 		colorFilesOptsAutoColorWithColor: function( test ){
 			test.expect(3);
-			this.c7.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					test.equals( Object.keys( c.colorFiles ).length, 1, "Has Correct amount of colors" );
-					test.ok( arrayEqual( Object.keys( c.colorFiles ), ['stroke-example-red.svg'] ), "Has correct file names");
-					test.equals( c.colorFiles['stroke-example-red.svg'], strokeSVG, "has correct contents" );
-					test.done();
+			this.c7.convert({
+				complete: test.done,
+				collect: function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						test.equals( Object.keys( c.colorFiles ).length, 1, "Has Correct amount of colors" );
+						test.ok( arrayEqual( Object.keys( c.colorFiles ), ['stroke-example-red.svg'] ), "Has correct file names");
+						test.equals( c.colorFiles['stroke-example-red.svg'], strokeSVG, "has correct contents" );
+					}
 				}
 			});
 		}
@@ -241,29 +270,33 @@
 		},
 		writeFirstFile: function( test ) {
 			test.expect(1);
-			this.c.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					c.writeFiles( "test/files/temp" );
-					test.ok( fs.existsSync( "test/files/temp/bear.svg" ) );
-					test.done();
+			this.c.convert({
+				complete: test.done,
+				collect: function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						c.writeFiles( "test/files/temp" );
+						test.ok( fs.existsSync( "test/files/temp/bear.svg" ) );
+					}
 				}
 			});
 		},
 		writeColorFiles: function( test ) {
 			test.expect(3);
-			this.c2.convert(function(err, c){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					c.writeFiles( "test/files/temp" );
-					test.ok( fs.existsSync( "test/files/temp/bear.svg" ) );
-					test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
-					test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
-					test.done();
+			this.c2.convert({
+				complete: test.done,
+				collect: function(err, c){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						c.writeFiles( "test/files/temp" );
+						test.ok( fs.existsSync( "test/files/temp/bear.svg" ) );
+						test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
+						test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
+					}
 				}
 			});
 		}
@@ -283,16 +316,19 @@
 		},
 		writeColorFiles: function( test ) {
 			test.expect(3);
-			this.c.convert(function( err, c ){
-				if( err ){
-					test.ok( false, err );
-					test.done();
-				} else {
-					c.writeFiles( "test/files/temp" );
-					test.ok( !fs.existsSync( "test/files/temp/bear.svg" ) );
-					test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
-					test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
-					test.done();
+			this.c.convert({
+				complete: test.done,
+				collect:
+				function( err, c ){
+					if( err ){
+						test.ok( false, err );
+						test.done();
+					} else {
+						c.writeFiles( "test/files/temp" );
+						test.ok( !fs.existsSync( "test/files/temp/bear.svg" ) );
+						test.ok( fs.existsSync( "test/files/temp/bear-blue.svg" ) );
+						test.ok( fs.existsSync( "test/files/temp/bear-red.svg" ) );
+					}
 				}
 			});
 		}
@@ -304,11 +340,13 @@
 			this.c2 = new Colorfy( "test/files/bear.colors-blue-red.svg" );
 			done();
 		},
+
 		filenameHasNoColors: function( test ){
 			var colorConfig = this.c._getColorConfig( "test/files/bear.svg" );
 			test.deepEqual( Object.keys(colorConfig).length, 0, "_getColorConfig should return an empty object" );
 			test.done();
 		},
+
 		filenameHasColorsNoExtras: function( test ){
 			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red.svg" );
 			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
@@ -316,6 +354,7 @@
 			test.deepEqual( colorConfig.red, 'red', "_getColorConfig should return color word for color word" );
 			test.done();
 		},
+
 		filenameHasColorsWordWithoutMatch: function( test ){
 			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red-asdf.svg" );
 			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
@@ -323,6 +362,7 @@
 			test.deepEqual( colorConfig.red, 'red', "_getColorConfig should return color word for color word" );
 			test.done();
 		},
+
 		filenameHasColorsWordWithMatch: function( test ){
 			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red-asdf.svg", { "asdf": "orange"} );
 			test.deepEqual( Object.keys(colorConfig).length, 3, "_getColorConfig should return two colors" );
@@ -331,6 +371,7 @@
 			test.deepEqual( colorConfig.asdf, 'orange', "_getColorConfig should return color word for color word" );
 			test.done();
 		},
+
 		filenameHasColorsWordWithOverride: function( test ){
 			var colorConfig = this.c2._getColorConfig( "test/files/bear.colors-blue-red.svg", { "red": "#e50000"} );
 			test.deepEqual( Object.keys(colorConfig).length, 2, "_getColorConfig should return two colors" );
@@ -338,6 +379,7 @@
 			test.deepEqual( colorConfig.red, '#e50000', "_getColorConfig should return color word for color word" );
 			test.done();
 		},
+
 		tearDown: function( done ){
 			done();
 		}
