@@ -31,7 +31,7 @@
   "dependencies": {
     "fs-extra": "0.6.3",
     "lodash": "2.4.0",
-    "phantomjs": "1.9.15",
+    "phantomjs-prebuilt": "2.1.7",
     "rsvp": "3.0.15",
     "@filamentgroup/worker-farm": "1.2.0"
   },
