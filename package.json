@@ -1,7 +1,7 @@
 {
   "name": "directory-colorfy",
   "description": "Color up those SVGs",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "homepage": "https://github.com/filamentgroup/directory-colorfy",
   "author": {
     "name": "Jeffrey Lembeck & Filament Group",
@@ -23,7 +23,7 @@
   ],
   "main": "lib/directory-colorfy",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4"
   },
   "scripts": {
     "test": "node node_modules/.bin/grunt nodeunit"
