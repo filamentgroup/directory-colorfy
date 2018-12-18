@@ -23,7 +23,7 @@
   ],
   "main": "lib/directory-colorfy",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 6"
   },
   "scripts": {
     "test": "node node_modules/.bin/grunt nodeunit"
