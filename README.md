@@ -1,3 +1,5 @@
+:warning: This project is archived and the repository is no longer maintained.
+
 # directory-colorfy [![Build Status](https://secure.travis-ci.org/filamentgroup/directory-colorfy.png?branch=master)](http://travis-ci.org/filamentgroup/directory-colorfy)
 
 [![Filament Group](http://filamentgroup.com/images/fg-logo-positive-sm-crop.png) ](http://www.filamentgroup.com/)
